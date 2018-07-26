@@ -1,0 +1,88 @@
+$traverse-nav__label-width: 18rem; /* 288px */
+
+.c-traverse-nav {
+  display: flex;
+
+  .has-js & {
+    @media (--from-medium-screen) {
+      display: block;
+      position: fixed;
+      right: 0;
+      top: $banner-height--large;
+      z-index: calc(map(layers, modal) + 1);
+      width: $navigation-width--large;
+    }
+  }
+}
+
+.c-traverse-nav__item {
+  @apply --focusable;
+  @apply --navigation-link;
+
+  display: flex;
+  flex: 50% 0 1;
+  justify-content: center;
+  position: relative;
+  width: auto;
+  box-shadow: inset 0 -1px 0 $navigation-color--offset;
+  padding: map(spaces, medium);
+
+  @media (-ms-high-contrast: active) {
+    border: 1px solid;
+  }
+}
+
+.c-traverse-nav__item[rel] {
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  /* Box: covers ear */
+  &::before {
+    z-index: map(layers, underlay);
+    background-color: $navigation-color;
+    box-shadow: inset 1px 0 $navigation-color--offset;
+    content: '';
+  }
+
+  /* Ear: slides from under box on hover */
+  &::after {
+    .has-js & {
+      @media (--from-medium-screen) {
+        @apply --typeset-label;
+
+        z-index: calc(map(layers, underlay) - 1);
+        width: $traverse-nav__label-width;
+        overflow: hidden;
+        background-color: $color-year--dark-alpha;
+        background-color: var(--color-year--dark-alpha, $color-year--dark-alpha);
+        backdrop-filter: blur(4px);
+        padding: map(spaces, xsmall) map(spaces, small);
+        white-space: pre-wrap;
+        color: white;
+        transition: all 0.3s ease-out;
+        content: attr(aria-label);
+      }
+    }
+
+    [data-menu-expanded=true] & {
+      display: none;
+    }
+  }
+
+  &:hover {
+    &::after {
+      left: calc($traverse-nav__label-width * -1);
+    }
+  }
+}
+
+.c-traverse-nav__icon {
+  height: 2.5rem;
+  width: 2.5rem;
+}

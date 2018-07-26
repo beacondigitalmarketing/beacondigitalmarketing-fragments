@@ -1,0 +1,10 @@
+{% extends "@page" %}
+{% block main %}
+<section>
+  {% include "@preface" %}
+  {% render "@listing--inset", config %}
+  {% if results %}
+    {% render "@button--more" %}
+  {% endif %}
+</section>
+{% endblock %}
