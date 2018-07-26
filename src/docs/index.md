@@ -1,6 +1,6 @@
 ---
 hidden: true
-title: Bits, the front-end component library for 24 ways
+title: fragments, the front-end component library for 24 ways
 ---
 You are viewing the front-end component library for 24 ways. It is powered by [Fractal](http://fractal.build), a tool that enables the rapid development of components, templates and pages.
 
